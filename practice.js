@@ -94,6 +94,10 @@ function contains(names, nathan, callback) {
   }
 }
 
+// function contains(arr, name, cb) {
+//   arr.includes(name) ? cb(true) : cb(false);
+// }
+
 // Do not edit the code below.
 contains(names, "Colt", function(result) {
   if (result === true) {
@@ -111,7 +115,15 @@ contains(names, "Colt", function(result) {
   Remove any duplicate values from the array, and invoke the callback with the modified array as an argument.
 */
 
-function 
+function uniq(arr, cb) {
+  let unique = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!unique.includes(arr[i])) {
+      unique.push(arr[i]);
+    }
+  }
+  return cb(unique);
+}
 
 // Do not edit the code below.
 uniq(names, function(uniqArr) {
@@ -130,10 +142,9 @@ uniq(names, function(uniqArr) {
 */
 
 function each(array, callback) {
-  for (var i = 0; i < array.length; i++) {
-    callback(name[i]);
-  }
-  return each;
+  array.forEach(function(curr, ind, self) {
+    return callback(curr, ind);
+  });
 }
 
 // Do not edit the code below.
@@ -149,13 +160,12 @@ each(names, function(item, indice) {
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
-function getUserById(users, id, callback) {
-  for (var i = 0; i < users.length; i++) {
-    if (users.id === id) {
-      return callback(id);
+function getUserById(array, id, cb) {
+  for (let user of array) {
+    if (user.id === id) {
+      return cb(user);
     }
   }
-  return getUserById;
 }
 
 // Do not edit the code below.
